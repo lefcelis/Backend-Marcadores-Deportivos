@@ -21,8 +21,10 @@ const eventoShema = new mongoose.Schema({
     tipoevento: {
         type: String,
         required: true,
-    },
-});
+    }
+},
+{timestamps: true,
+    versionKey: false,});
 
 export const evento = mongoose.model('ceventos', eventoShema);
 export default evento;

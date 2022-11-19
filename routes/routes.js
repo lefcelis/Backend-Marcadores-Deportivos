@@ -1,8 +1,7 @@
 import express from 'express';
 import {usuario} from '../models/usuario.js';
 import { evento } from '../models/evento.js';
-//import { regevento, showevento, showoneevento, deleteoneevento, updateoneevento } from '../controllers/eventocontrollers.js';
-//import { regusuario, showuser, showoneuser, deleteoneuser, updateoneuser } from '../controllers/usercontrollers.js';
+import { regevento, showevento, showoneevento, deleteevento, updateevento } from '../controllers/eventoscontrollers.js';
 import { regusuario, showuser, showoneuser, deleteoneuser, updateuser } from '../controllers/usercontrollers.js';
 import {db} from '../mongodb.js';
 
@@ -21,11 +20,11 @@ router.get('/login', (req, res) => {
 
 //Rutas collection eventos
 
-/*router.post('/regevento', regevento);
+router.post('/regevento', regevento);
 router.get('/show', showevento);
 router.get('/showone/:id', showoneevento);
-router.delete('/delevent/:id', deleteoneevento);
-router.put('/upevent/:id', updateoneevento);*/
+router.delete('/delevent/:id', deleteevento);
+router.put('/upevent/:id', updateevento);
 
 //Rutas collection usuarios
 
