@@ -12,9 +12,12 @@ const userShema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    },
-});
+    }
+},
+{timestamps: true,
+versionKey: false,});
 
-export const Usuario = mongoose.model('usuarios', userShema);
-export default Usuario;
+
+export const usuario = mongoose.model('users', userShema);
+export default usuario;
 
