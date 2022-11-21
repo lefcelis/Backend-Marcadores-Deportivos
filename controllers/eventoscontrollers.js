@@ -1,6 +1,6 @@
 import {evento} from '../models/evento.js';
 
-//guardar un evento deportivo
+//Guardar o registrar un evento deportivo
 
 export const regevento = (req, res) => {
     const cevento = evento(req.body);
@@ -10,7 +10,7 @@ export const regevento = (req, res) => {
       .catch((error) => res.json({ message: error }));
   };
 
-//mostrar los eventos deportivos que estan en la bd de mongodb
+//Mostrar los eventos deportivos que están en la bd de MongoDB
 
 export const showevento = (req,res) => {
     evento
@@ -20,7 +20,7 @@ export const showevento = (req,res) => {
  }
 
 
-// mostrar un evento deportivo específico
+// Mostrar un evento deportivo específico
 
 export const showoneevento = (req, res) => {
     const { id } = req.params;
@@ -31,7 +31,7 @@ export const showoneevento = (req, res) => {
   };
 
 
-//eliminar un evento deportivo
+//Eliminar un evento deportivo
 
 export const deleteevento =  (req, res) => {
     const { id } = req.params;
@@ -42,7 +42,7 @@ export const deleteevento =  (req, res) => {
   };
 
 
-//actualizar un evento deportivo
+//Actualizar un evento deportivo
 export const updateevento =  (req, res) => {
     const { id } = req.params;
     const { fecha , equipo1, equipo2, marcador1, marcador2, tipoevento } = req.body;

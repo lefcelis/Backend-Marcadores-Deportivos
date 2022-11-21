@@ -9,7 +9,6 @@ const evento1 = new evento();
 const user1 = new usuario();
 export const router = express.Router();
 
-
 router.get('/', (req, res) => {
     res.send('Bienvenidos a Node JS desde la raíz 😁✔');
 });
@@ -21,10 +20,10 @@ router.get('/login', (req, res) => {
 //Rutas collection eventos
 
 router.post('/regevento', regevento);
-router.get('/show', showevento);
-router.get('/showone/:id', showoneevento);
-router.delete('/delevent/:id', deleteevento);
-router.put('/upevent/:id', updateevento);
+router.get('/shevento', showevento);
+router.get('/shevento/:id', showoneevento);
+router.delete('/delevento/:id', deleteevento);
+router.put('/upevento/:id', updateevento);
 
 //Rutas collection usuarios
 
@@ -45,7 +44,7 @@ router.post('/agregar', (req, res) => {
 });
 
 router.post('/eventos', (req, res) => {
-    res.send('Archivo agregado con éxito');
+    res.send('Evento agregado con éxito 🤗🎉');
     console.log(req.body);
     //let user = new user ()
     evento1.fecha = req.body.fecha;
@@ -57,7 +56,7 @@ router.post('/eventos', (req, res) => {
 });
 
 router.delete('/delete', (req, res) => {
-    res.send('Archivo eliminado con éxito');
+    res.send('Archivo eliminado con éxito 😁✌');
 });
 
 export default router;
