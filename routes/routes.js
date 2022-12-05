@@ -1,62 +1,27 @@
 import express from 'express';
-import {usuario} from '../models/usuario.js';
-import { evento } from '../models/evento.js';
-import { regevento, showevento, showoneevento, deleteevento, updateevento } from '../controllers/eventoscontrollers.js';
-import { regusuario, showuser, showoneuser, deleteoneuser, updateuser } from '../controllers/usercontrollers.js';
+import { regusuario, showuser, shuserone, deluser, upuser  } from '../controllers/userscontroller.js';
+import { regevento, sheventos, shevent, delevent, upevent } from '../controllers/ceventocontrollers.js';
+import { login } from '../controllers/logincontrollers.js';
 import {db} from '../mongodb.js';
+import {requireToken} from '../midleware/auth.js'
 
-const evento1 = new evento();
-const user1 = new usuario();
 export const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Bienvenidos a Node JS desde la raíz 😁✔');
-});
+//Rutas para Mis eventos deportivos
 
-router.get('/login', (req, res) => {
-    res.send('Bienvenidos a Node JS desde el login 😎✌');
-});
+router.post('/regevento', regevento );
+router.get('/shevents',requireToken, sheventos);
+router.get('/shevents/:id', shevent);
+router.delete('/delevent/:id', delevent);
+router.put('/upevent/:id', upevent);
 
-//Rutas collection eventos
-
-router.post('/regevento', regevento);
-router.get('/shevento', showevento);
-router.get('/shevento/:id', showoneevento);
-router.delete('/delevento/:id', deleteevento);
-router.put('/upevento/:id', updateevento);
-
-//Rutas collection usuarios
-
+//rutas collection usuarios
 router.post('/reguser', regusuario);
-router.get('/showuser', showuser);
-router.get('/showuser/:id', showoneuser);
-router.delete('/deluser/:id', deleteoneuser);
-router.put('/upuser/:id', updateuser);
+router.get('/shuser',requireToken, showuser);
+router.get('/shuser/:id', shuserone);
+router.delete('/shuser/:id',deluser);
+router.put('/upuser/:id', upuser);
+router.post('/login', login);
 
-
-router.post('/agregar', (req, res) => {
-    res.send('😁Archivo agregado con éxito👏');
-    console.log(req.body);
-    //let user = new user ()
-    user1.nomuser = req.body.nomuser;
-    user1.password = req.body.password;
-    user1.correo = req.body.correo; 
-});
-
-router.post('/eventos', (req, res) => {
-    res.send('Evento agregado con éxito 🤗🎉');
-    console.log(req.body);
-    //let user = new user ()
-    evento1.fecha = req.body.fecha;
-    evento1.equipo1 = req.body.equipo1;
-    evento1.equipo2 = req.body.equipo2; 
-    evento1.marcador1 = req.body.marcador1;
-    evento1.marcador2 = req.body.marcador2;
-    evento1.tipoevento = req.body.tipoevento;
-});
-
-router.delete('/delete', (req, res) => {
-    res.send('Archivo eliminado con éxito 😁✌');
-});
 
 export default router;
