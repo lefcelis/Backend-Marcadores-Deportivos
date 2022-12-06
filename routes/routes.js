@@ -1,27 +1,30 @@
 import express from 'express';
 import { regusuario, showuser, shuserone, deluser, upuser  } from '../controllers/userscontroller.js';
-import { regevento, sheventos, shevent, delevent, upevent } from '../controllers/ceventocontrollers.js';
-import { login } from '../controllers/logincontrollers.js';
+import { regevento, shevento, shonevent, delevento, upevento } from '../controllers/eventcontrollers.js';
+import {login, loginjwt} from '../controllers/logincontrollers.js';
+import {requireToken} from '../Midlewares/autenticacion.js'
 import {db} from '../mongodb.js';
-import {requireToken} from '../midleware/auth.js'
+
+
 
 export const router = express.Router();
 
-//Rutas para Mis eventos deportivos
-
-router.post('/regevento', regevento );
-router.get('/shevents',requireToken, sheventos);
-router.get('/shevents/:id', shevent);
-router.delete('/delevent/:id', delevent);
-router.put('/upevent/:id', upevent);
 
 //rutas collection usuarios
+router.post('/login1',requireToken, loginjwt );
+router.post('/login', login );
 router.post('/reguser', regusuario);
 router.get('/shuser',requireToken, showuser);
 router.get('/shuser/:id', shuserone);
 router.delete('/shuser/:id',deluser);
-router.put('/upuser/:id', upuser);
-router.post('/login', login);
+router.put('/shuser/:id', upuser);
 
+//rutas para los eventos deportivos
+
+router.post('/regevento', regevento);
+router.get('/shevento',requireToken, shevento);
+router.get('/shevento/:id', shonevent);
+router.delete('/delevento/:id', delevento);
+router.put('/upevento/:id', upevento);
 
 export default router;
